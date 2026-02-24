@@ -1,0 +1,7 @@
+.venv312
+postgres_data
+.env
+node_modules
+**/__pycache__/
+*.py[cod]
+*.pyc

@@ -1,0 +1,7 @@
+path: "C:\\Users\\Hayden Duong\\Desktop\\SIT306\\model_training\\dataset"
+train: "train"
+test: "test"
+val: "val"
+
+names:
+  0: serial_zone

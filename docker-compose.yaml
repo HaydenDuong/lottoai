@@ -1,0 +1,39 @@
+# docker-compose.yaml
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: lottoai_db_postgres
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+
+    # Data Persistence
+    # ./ = Current directory
+    # postgres_data = folder name on server storage (inside LottoAI folder)
+    # : = Volume Mapping - map left to right (Connect these two folders together) -> Changes in one side will sync the other
+    # /var/lib/postgresql/data = path inside the Docker container (lottoai_db_postgres) - this is where PostgreSQL stores all databese files, tables, indexes, user data, configurations
+      - ./postgres_data:/var/lib/postgresql/data
+
+    # Initialization Script
+    # Similar to the above case: /docker-entrypoint-initdb.d/init.sql/
+    # This command will setup tables / data automatically on the first run
+    # Because Postgres container will run all .sql & .sh scripts inside /docker-entrypoint-initdb.d/
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+# When PostgreSQL container starts:
+# 1. Check: is this the Frst time starting? (Is /var/lib/postgresql/data empty?)
+# 2. Proceed to the following steps: 
+# If YES (first time):
+#       Look in /docker-entrypoint-initdb.d/
+#       Found: init.sql
+#       Execute: psql < init.sql -> Create tables, inserts data, etc.
+# If NO (already initialized):
+#       Skip init.sql
+#       Start PostgreSQL normally

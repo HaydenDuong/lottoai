@@ -1,0 +1,13 @@
+1. Tạo folder dataset với subfolders (train, test, val)
+2. Thiết lập python environment 3.12:
+	py -3.12 -m venv .venv312
+	.venv312\Scripts\activate
+	pip install opencv-python ultralytics label-studio easyocr pandas ( Optional: psycopg2-binary, streamlit, split_folder )
+	pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+3. Tạo thư mục raw_images và populated nó với 100 hình vé số. Populate subfolder test với 30 hình khác
+4. Chạy label-studio: label-studio start và label khu vực chứa số serial trong từng bức hình.
+5. Export as "YOLO with Images"; giải nén và cho vào subfolder "train" đã tạo trước đó
+6. Thực hiện điều tương tự như bước 4, 5 ở trên cho subfolder "val" với 20 hình khác
+7. Chạy "model_training.py" để fine-tune model YOLO.
+8. Chạy "trainedModel_testing.py" để test trained model.
+9. Chạy "simpleOCR_testing.py" để test number-extraction bằng easyocr.

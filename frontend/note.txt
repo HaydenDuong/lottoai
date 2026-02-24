@@ -1,0 +1,40 @@
+Start building the frontend
+npm create vite@latest . -- --template react
+npm install -D tailwindcss@3.4.1 postcss@8.4.35 autoprefixer@10.4.17 (the original npm install -D tailwindcss postcss autoprefixer seem not working well)
+npm install framer-motion canvas-confetti axios
+Manually created 2 JS files in frontend-react folder:
+
+    # postcss.config.js
+    export default {
+        plugins: {
+            tailwindcss: {},
+            autoprefixer: {},
+        },
+    }
+
+    # tailwind.config.js
+    export default {
+        content: [
+            "./index.html",
+            "./src/**/*.{js,ts,jsx,tsx}",
+        ],
+        theme: {
+            extend: {},
+        },
+        plugins: [],
+    }
+
+npm install --save-dev concurrently                 # For combining both "cd frontend-react; npm run dev" & "python -m uvicorn backend.fastapi_yoloocr_pipeline:app --reload"
+edit root package.json with the followings:
+{
+  "name": "lottoai",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "cd frontend-react && npm run dev",
+    "dev:backend": "python -m uvicorn backend.fastapi_yoloocr_pipeline:app --reload"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

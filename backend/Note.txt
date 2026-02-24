@@ -1,0 +1,43 @@
+Backend folder
+1. pip install fastapi uvicorn 
+(fastapi - web framework for building APIs with Python;
+ uvicorn - ASGI (Asynchronous Server Gateway Interface) web server designed for Python. 
+        . The intermediary between client & FastAPI application.
+        . It listens for incoming HTTP requests, processes & forwards them to FastAPI for handling.)
+    To run FastAPI via Uvicorn: uvicorn "backend_python_file":app --reload
+        (app: FastAPI instance inside the file.
+         --reload: Automatically restarts the server when the code change)
+2. To run "single_upload.py": python -m uvicorn singlefile_upload:app --reload
+
+18-11-2025 Authentication (OAuth + Manual SignUp)
+1. Backend Authentication Module
+    JWT token generation/validation
+    Password hashing (bcrypt)
+    User registration endpoint (POST /auth/signup)
+    Login endpoint (POST /auth/login)
+    Google OAuth integration (GET /auth/google, GET /auth/google/callback)
+    Current user endpoint (GET /auth/me)
+
+2. Protected Upload Endpoint
+    Modify /upload/ to accept optional JWT token
+    If authenticated → save to user_numbers with user_id
+    If guest → just return results (no save)
+
+3. Frontend Integration
+    Connect SignIn/SignUp forms to backend
+    Store JWT in localStorage
+    Send token with upload requests
+    Add "Continue as Guest" option
+    Display user info when logged in
+
+4. Google OAuth Setup
+    Create Google Cloud project
+    Get OAuth credentials
+    Configure redirect URLs
+
+pip install python-jose[cryptography] passlib[bcrypt] python-multipart 
+
+pip install google-auth google-auth-oauthlib google-auth-httplib2
+
+20/11/2025 - WebScrapper
+pip install beautifulsoup4 requests apscheduler pytz
