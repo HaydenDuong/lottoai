@@ -57,12 +57,15 @@ def scrape_lottery_results() -> List[Dict]:
         
         if date_cell:
             date_text = date_cell.get_text(strip=True)
+            
             try:
                 draw_date = datetime.strptime(date_text, "%d/%m/%Y").date()
-                logger.info(f"Draw date: {draw_date}")
+                logger.info("Draw date: %s", draw_date)
                 logger.info(f"Successfully scraped {len(results)} provinces")
-            except:
-                logger.warning(f"Could not parse date '{date_text}', using today")
+            except ValueError:
+                logger.warning(
+                    "Could not parse draw date '%s'; using today's date",
+                    date_text)
         
         # Find the main container table
         main_table = soup.find('table', class_='bkqmiennam')

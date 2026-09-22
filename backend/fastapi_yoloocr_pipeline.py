@@ -265,8 +265,9 @@ async def uploadfile(
         raise he
     
     except Exception as e:
-        return{
-            "status": "error",
-            "filename": file.filename ,
-            "message": str(e)
-        }
+        logging.exception("Unexpected error while processing uploaded ticket.")
+        
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to process ticket"
+        )

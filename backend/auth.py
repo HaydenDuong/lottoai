@@ -157,5 +157,5 @@ async def get_optional_user_id(
         payload = decode_access_token(token)
         user_id = payload.get("sub")
         return int(user_id) if user_id else None
-    except:
+    except (HTTPException, ValueError):
         return None

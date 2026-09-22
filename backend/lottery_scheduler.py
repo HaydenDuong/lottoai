@@ -26,7 +26,7 @@ def start_scheduler():
     # Schedule for 4:45pm Vietnam time
     scheduler.add_job(
         scrape_and_save,
-        trigger=CronTrigger(hour=16, minute=6, timezone=vietnam_tz),
+        trigger=CronTrigger(hour=16, minute=45, timezone=vietnam_tz),
         id='lottery_scraper',
         name='Daily Lottery Scraper',
         replace_existing=True
