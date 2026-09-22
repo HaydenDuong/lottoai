@@ -1,11 +1,21 @@
-# LottoAI - AI-Powered Lottery Ticket Verification System
+# LottoAI - Computer Vision & OCR Lottery Ticket Verification Prototype
 
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
 [![React](https://img.shields.io/badge/React-19.2.0-61dafb.svg)](https://reactjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Latest-009688.svg)](https://fastapi.tiangolo.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791.svg)](https://www.postgresql.org/)
 
-LottoAI is a comprehensive full-stack application that leverages computer vision and OCR technology to automatically verify lottery tickets against winning numbers. The system features daily automated updates of lottery results, user authentication, and intelligent prize matching algorithms.
+LottoAI is an internship project that uses YOLO and EasyOCR to detect and extract lottery ticket numbers, then compares them against stored lottery results through a FastAPI backend and PostgreSQL database.
+
+The project was developed during my software engineering internship at Cốc Cốc as part of Deakin University's SIT306 industry placement.
+
+## Project Context
+
+This project was developed during my software engineering internship at Cốc Cốc as part of Deakin University's SIT306 industry placement.
+
+It was assigned as an internship project and is included here as part of my software engineering portfolio.
+
+Published here for portfolio and learning purposes with permission from my internship supervisor.
 
 ---
 
@@ -24,29 +34,38 @@ LottoAI is a comprehensive full-stack application that leverages computer vision
 - [Deployment](#deployment)
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
-- [License](#license)
+- [Project Context and Usage](#project-context-and-usage)
 
 ---
 
 ## ✨ Features
 
+## Features
+
 ### Core Functionality
-- **AI-Powered Ticket Recognition**: Uses YOLOv11n for lottery ticket detection and EasyOCR for number extraction
-- **Automated Prize Checking**: Matches user numbers against 9 prize tiers (Prize 8 through Jackpot)
-- **Daily Automated Updates**: Web scraper fetches latest lottery results daily at 4:45pm Vietnam time
-- **Multi-Province Support**: Currently supports 3 provinces in Miền Nam region (Vietnam Southern Lottery)
 
-### User Management
-- **Dual Authentication**: Manual signup with email/password (Argon2 hashing) or Google OAuth
-- **Guest Mode**: Upload and check tickets without creating an account
-- **Secure Sessions**: JWT tokens with 7-day expiration
-- **User History**: Authenticated users can track uploaded numbers (future enhancement)
+- YOLOv11n-based ticket region detection
+- EasyOCR-based number extraction
+- Prize matching across multiple lottery prize tiers
+- Scheduled scraping of lottery results
+- Support for three southern Vietnam provinces
+- Guest ticket verification
 
-### Technical Features
-- **RESTful API**: FastAPI backend with automatic Swagger documentation
-- **Real-time Processing**: < 3 second response time for ticket verification
-- **Containerized Database**: PostgreSQL running in Docker with persistent storage
-- **Responsive UI**: Modern React frontend with Framer Motion animations
+### User Features
+
+- Email/password authentication with Argon2 password hashing
+- Google OAuth
+- JWT-based authentication
+- Saving extracted numbers for authenticated users
+
+### Technical Components
+
+- FastAPI backend
+- React frontend
+- PostgreSQL database
+- Docker Compose for local database setup
+- APScheduler for scheduled scraping
+- BeautifulSoup for lottery result extraction
 
 ---
 
@@ -601,21 +620,10 @@ git commit -m "feat: add user profile page"
 git push origin feature/your-feature-name
 ```
 
-## 📄 License
+## Project Context and Usage
 
-This project is proprietary software developed for Cốc Cốc. All rights reserved.
+This repository is maintained as part of my software engineering portfolio.
 
-For internal use only. Distribution, modification, or use outside the company requires explicit permission.
-
----
-
-## 📞 Support
-
-For questions or issues:
-- **Mentor**: [Mr.Tu Thanh Tung] - [tungtt1@coccoc.com]
-- **Documentation**: See directory-specific READMEs:
-  - [Backend Documentation](backend/README.md)
-  - [Frontend Documentation](frontend/README.md)
-  - [ML Pipeline Documentation](model_training/README.md)
+The project was originally developed during my internship at Cốc Cốc as part of Deakin University's SIT306 industry placement.
 
 *Last Updated: November 2025*
